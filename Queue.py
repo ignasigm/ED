@@ -4,7 +4,7 @@ class Queue:
 	def __init__(self):        
 		self.__data=[]      
 	def __str__(self):        
-		return ''.join(str(elem)+', ’ for elem in self.__data)                
+		return ''.join(str(elem)+','+for elem in self._data)                
 	def enqueue(self,el):        
 		self.__data.append(el)    
 	def dequeue(self):      
