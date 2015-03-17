@@ -100,6 +100,97 @@ def testPriorityQueue():
 	print "Mida: ",len(llista_qr)
 	print "Element tret: ",llista_qr.dequeue()
 	print "Tota la llista: ",llista_qr
+	
+	
+'''CARD'''
+class Card:
+    def __init__(self, color, number):
+        #constructor on iniciem els dos atributs(privats)
+        self.__color = color
+        self.__number = number
+    def getColor(self):
+        #canvia el color
+        return self.__color
+    def getNumber(self):
+        #retorna el nombre
+        return self.__number
+    def setColor(self, color):
+        #defineix color
+        self.__color = color
+    def setNumber(self, number):
+        #defineix nombre
+        self.__number = number
+    def tellMeColor(self):
+        #converteix l'int del nombre en color escrit
+        dic = {0: "blue", 1: "green", 2: "red", 3: "yellow"}
+        return dic[self.getColor()]        
+    def __str__(self):
+        #sobrecarrega del print (imprimeix una carta de la forma: nombre-color)
+        #retorna un string on s'hi especifica nombre i color
+        return str(self.getNumber())+"-"+str(self.tellMeColor())
+    def check_card(self, other):
+        #comprova si dos cartes son compatibles
+        if self.getColor() == other.getColor() or self.getNumber()== other.getNumber():
+            return True
+        else:
+            return False
+            
+
+'''falta acabar'''            
+class Deck(Queue):
+    def __init__(self):            
+        Queue.__init__(self)
+        for i in range(10):
+            for j in range(4):
+                self.enqueue(Card(j, i)) 
+    def __getitem__(self,i):
+        return self[i]
+    def remove(self,i):
+        self.remove(i)
+    def deal_one_card(self,card):
+        i = random.randint(0,len(self)-1)
+        card = self.__getitem__(i)
+        self.remove(i)
+        return card
+        
+def testDeck():
+    print "\nTest Deck"
+    llista = Deck()
+    print llista
+    llista.deal_one_card(Card(2,3))
+'''fins aqui'''
+
+
+class Discard_Pile(Stack):
+    def __init__(self):
+        Stack.__init__(self)
+        #afegir una carta aleatoria de deck
+        self.push(Card(2,5))
+        
+def testDiscard_Pile():
+    print "\nTest Discard Pile"
+    print "Creacio de la Discard Pile:"
+    llista = Discard_Pile()
+    print "Veure si la llista esta buida:"
+    print llista.isEmpty()
+    print "Quants elements te?"
+    print len(llista)
+    print "Mostrar Discard Pile:",llista.__str__()
+    print "Afegim unes quantes cartes"
+    llista.push(Card(1,5))
+    llista.push(Card(0,9))
+    llista.push(Card(3,2))
+    print "Ara te",len(llista),"elements"
+    print "Es la seguent llista:",llista
+    print "Mostrar la carta visible, que es exactament la ultima que s'ha afegit"
+    print llista.peek()
+    print "Eliminem la carta visible"
+    print "Carta borrada:",llista.pop()
+    print "Veure de nou la llista:",llista	
+	
+	
 testStack()
 testQueue()
 testPriorityQueue()
+testDeck()   
+testDiscard_Pile()
