@@ -1,3 +1,4 @@
+import random
 #class Stack
 class Stack:
 	def __init__(self):
@@ -138,19 +139,17 @@ class Card:
 
 '''falta acabar'''            
 class Deck(Queue):
-    def __init__(self):            
+    
+    def __init__(self):
+        cards = []            
         Queue.__init__(self)
         for i in range(10):
             for j in range(4):
-                self.enqueue(Card(j, i)) 
-    def shuffle
-    def remove(self,i):
-        self.remove(i)
-    def deal_one_card(self,card):
-        i = random.randint(0,len(self)-1)
-        card = self.__getitem__(i)
-        self.remove(i)
-        return card
+                cards.append(Card(j, i))
+        random.shuffle(cards)
+        for i in cards:
+            self.enqueue(i)
+    
         
 def testDeck():
     print "\nTest Deck"
@@ -161,16 +160,17 @@ def testDeck():
 
 
 class Discard_Pile(Stack):
-    def __init__(self):
+    def __init__(self, deck):
         Stack.__init__(self)
         #afegir una carta aleatoria de deck
-        self.append(Card(2,5))
+        self.append(deck.dequeue)
     def append(self, card):
 		#funcio que afegeix al final de la discard_pile la carta card
 		self.push(card)
 
         
 def testDiscard_Pile():
+    
     print "\nTest Discard Pile"
     print "Creacio de la Discard Pile:"
     llista = Discard_Pile()
