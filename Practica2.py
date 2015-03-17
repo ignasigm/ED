@@ -137,7 +137,7 @@ class Card:
             return False
             
 
-'''falta acabar'''            
+'''DECK'''            
 class Deck(Queue):
     
     def __init__(self):
@@ -152,11 +152,16 @@ class Deck(Queue):
     
         
 def testDeck():
-    print "\nTest Deck"
-    llista = Deck()
-    print llista
-    llista.deal_one_card(Card(2,3))
-'''fins aqui'''
+    print "\n\nTestDeck"
+    deck = Deck()
+    card1 = deck.dequeue()
+    card2 = deck.dequeue()
+    print "La carta numero 5 es: ",card1
+    print "Una carta a l'atzar es: ",card2
+    print "Son compatibles: ",card1.check_card(card2)
+    for i in range(5):
+        print "Reparteixo ",
+        print deck.dequeue()
 
 
 class Discard_Pile(Stack):
@@ -192,8 +197,6 @@ def testDiscard_Pile():
     print "Veure de nou la llista:",llista	
 	
 	
-testStack()
-testQueue()
-testPriorityQueue()
+
 testDeck()   
-testDiscard_Pile()
+
