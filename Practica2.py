@@ -101,8 +101,35 @@ def testPriorityQueue():
 	print "Mida: ",len(llista_qr)
 	print "Element tret: ",llista_qr.dequeue()
 	print "Tota la llista: ",llista_qr
-	
-	
+
+'''PLAYER'''
+class player(PriorityQueue):
+    def __init__(self, nom, deck, maxcartes):
+        self.__name = nom
+        i = 0
+        while i < maxcartes:
+            self.enqueue(deck.dequeue)
+            i+=1
+    def getName(self):
+	#retorna el nom del jugador
+	return self.__name
+    def __str__(self):
+	#funcio que imprimeix la informacio del player(nom i cartes)
+	resultat = "Nom: "+self.getName()+"\nCartes: "+self	
+	return resultat
+
+    def can_play_card(self,card):
+	#funcio que retorna true si els jugador te una carta que pot jugar i false si no te cap carta bona segons les normes
+	i=0
+	possible = False
+	while i<self.len() and not possible:
+	    possible = self.getCards()[i].check_card(card)		    
+	    i+=1
+	#si surt del while abans es que ho ha trobat i per tant True
+	if possible:
+	    return True
+	#sino False
+	else: return False
 '''CARD'''
 class Card:
     def __init__(self, color, number):
@@ -139,6 +166,7 @@ class Card:
 
 '''DECK'''            
 class Deck(Queue):
+    
     
     def __init__(self):
         cards = []            
