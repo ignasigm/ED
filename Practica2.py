@@ -163,11 +163,16 @@ def testDeck():
 class Discard_Pile(Stack):
     def __init__(self):
         Stack.__init__(self)
+<<<<<<< HEAD
         #afegir una carta aleatoria de deck
         self.append(Card(2,5))
     def append(self, card):
 		#funcio que afegeix al final de la discard_pile la carta card
 		self.push(card)
+=======
+        #afegir una carta aleatoria de deck, per emntrestant me l'invento
+        self.push(Card(2,5))
+>>>>>>> origin/master
         
 def testDiscard_Pile():
     print "\nTest Discard Pile"
