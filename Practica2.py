@@ -143,8 +143,7 @@ class Deck(Queue):
         for i in range(10):
             for j in range(4):
                 self.enqueue(Card(j, i)) 
-    def __getitem__(self,i):
-        return self[i]
+    def shuffle
     def remove(self,i):
         self.remove(i)
     def deal_one_card(self,card):
@@ -165,7 +164,10 @@ class Discard_Pile(Stack):
     def __init__(self):
         Stack.__init__(self)
         #afegir una carta aleatoria de deck
-        self.push(Card(2,5))
+        self.append(Card(2,5))
+    def append(self, card):
+		#funcio que afegeix al final de la discard_pile la carta card
+		self.push(card)
         
 def testDiscard_Pile():
     print "\nTest Discard Pile"
