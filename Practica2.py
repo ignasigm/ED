@@ -164,7 +164,7 @@ def testDeck():
 class Discard_Pile(Stack):
     def __init__(self):
         Stack.__init__(self)
-        #afegir una carta aleatoria de deck
+        #afegir una carta aleatoria de deck, per emntrestant me l'invento
         self.push(Card(2,5))
         
 def testDiscard_Pile():
