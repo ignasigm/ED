@@ -184,9 +184,9 @@ def testDiscard_Pile():
     print len(llista)
     print "Mostrar Discard Pile:",llista.__str__()
     print "Afegim unes quantes cartes"
-    llista.push(Card(1,5))
-    llista.push(Card(0,9))
-    llista.push(Card(3,2))
+    llista.append(Card(1,5))
+    llista.append(Card(0,9))
+    llista.append(Card(3,2))
     print "Ara te",len(llista),"elements"
     print "Es la seguent llista:",llista
     print "Mostrar la carta visible, que es exactament la ultima que s'ha afegit"
