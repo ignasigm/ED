@@ -123,13 +123,16 @@ class player(PriorityQueue):
 	i=0
 	possible = False
 	while i<self.len() and not possible:
-	    possible = self.getCards()[i].check_card(card)		    
+	    possible = self.getitem(i).check_card(card)		    
 	    i+=1
 	#si surt del while abans es que ho ha trobat i per tant True
-	if possible:
-	    return True
-	#sino False
-	else: return False
+	return possible
+    def play_a_card(self,card, discard_pile):
+	#funcio que retorna la carta i elimina de la llista de cartes del jugador
+	#afegeix a discard_pile
+	discard_pile.append(card)
+	#elimina i retorna
+	self.getCards().pop(self.getCards().index(card))
 '''CARD'''
 class Card:
     def __init__(self, color, number):
