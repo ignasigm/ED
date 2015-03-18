@@ -106,6 +106,7 @@ def testPriorityQueue():
 '''PLAYER'''
 class player(PriorityQueue):
     def __init__(self, nom, deck, maxcartes):
+    	Priority_Queue.__init__(self)
         self.__name = nom
         i = 0
         while i < maxcartes:
@@ -134,6 +135,7 @@ class player(PriorityQueue):
 	discard_pile.append(card)
 	#elimina i retorna
 	self.getCards().pop(self.getCards().index(card))
+
 	
 '''CARD'''
 class Card:
