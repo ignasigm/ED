@@ -203,15 +203,15 @@ class Discard_Pile(Stack):
 
         
 def testDiscard_Pile():
-    
+    deck = Deck()
     print "\nTest Discard Pile"
     print "Creacio de la Discard Pile:"
-    llista = Discard_Pile()
+    llista = Discard_Pile(deck)
     print "Veure si la llista esta buida:"
     print llista.isEmpty()
     print "Quants elements te?"
     print len(llista)
-    print "Mostrar Discard Pile:",llista.__str__()
+    print "Mostrar Discard Pile:",llista
     print "Afegim unes quantes cartes"
     llista.append(Card(1,5))
     llista.append(Card(0,9))
@@ -227,4 +227,4 @@ def testDiscard_Pile():
 	
 
 testDeck()   
-
+testDiscard_Pile()
