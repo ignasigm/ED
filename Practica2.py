@@ -199,7 +199,7 @@ class Discard_Pile(Stack):
     def __init__(self, deck):
         Stack.__init__(self)
         #afegir una carta aleatoria de deck
-        self.append(deck.dequeue)
+        self.append(deck.dequeue())
     def append(self, card):
 		#funcio que afegeix al final de la discard_pile la carta card
 		self.push(card)
