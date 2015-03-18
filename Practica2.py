@@ -38,7 +38,6 @@ def testStack():
 
 		
 class Queue:
-	
 	def __init__(self):        
 		self.__data=[]      
 	def __str__(self):        
@@ -56,6 +55,7 @@ class Queue:
 		self.__data.insert(num, el)
 	def __getitem__(self, num):
 		return self.__data[num]
+		
 def testQueue():
 	print "\ntestQueue"
 	llista_q = Queue()
@@ -87,6 +87,7 @@ class PriorityQueue(Queue):
 			    		inserted=True  
 		    		i=i+1              
 		  	if not(inserted):  self.insert(len(self),el)
+		  	
 def testPriorityQueue():
 	print "\ntestPQueue"
 	llista_qr = PriorityQueue()
@@ -133,6 +134,7 @@ class player(PriorityQueue):
 	discard_pile.append(card)
 	#elimina i retorna
 	self.getCards().pop(self.getCards().index(card))
+	
 '''CARD'''
 class Card:
     def __init__(self, color, number):
@@ -169,8 +171,6 @@ class Card:
 
 '''DECK'''            
 class Deck(Queue):
-    
-    
     def __init__(self):
         cards = []            
         Queue.__init__(self)
