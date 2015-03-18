@@ -55,6 +55,11 @@ class Queue:
 		self.__data.insert(num, el)
 	def __getitem__(self, num):
 		return self.__data[num]
+	def pop(self, num):
+		return self.__data.pop(num)
+	def getIndex(self, el):
+		return self.__data.index(el)
+      
 		
 def testQueue():
 	print "\ntestQueue"
@@ -145,9 +150,8 @@ class player(PriorityQueue):
     def play_a_card(self,card, discard_pile):
 	#funcio que retorna la carta i elimina de la llista de cartes del jugador
 	#afegeix a discard_pile
-	discard_pile.append(card)
-	#elimina i retorna
-	self.getCards().pop(self.getCards().index(card))
+	discard_pile.append(self.pop(self.getIndex(card)))
+	
 
 	
 '''CARD'''
