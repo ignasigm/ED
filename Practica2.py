@@ -106,7 +106,7 @@ def testPriorityQueue():
 '''PLAYER'''
 class player(PriorityQueue):
     def __init__(self, nom, deck, maxcartes):
-    	Priority_Queue.__init__(self)
+    	PriorityQueue.__init__(self)
         self.__name = nom
         i = 0
         while i < maxcartes:
