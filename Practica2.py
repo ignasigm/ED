@@ -119,7 +119,20 @@ class player(PriorityQueue):
 	#funcio que imprimeix la informacio del player(nom i cartes)
 	resultat = "Nom: "+self.getName()+"\nCartes: "+self	
 	return resultat
-
+	
+    '''Per implementar'''	
+    def select_card(self,number):
+	#funcio que selecciona la carta amb un numero corresponent introduit
+	i=0
+	possible = False
+	#mentre l'index sigui menor que la longitud i True
+	while i<self.len() and not possible:
+	    possible = number == self.getCards()[i].getNumber()		    
+	    i+=1
+	#si possible es True aleshores es que es pot i retorna la carta de la posicio que ho ha trobat
+	if possible:
+	    return self.getCards()[i]
+    '''fins aqui'''
     def can_play_card(self,card):
 	#funcio que retorna true si els jugador te una carta que pot jugar i false si no te cap carta bona segons les normes
 	i=0
