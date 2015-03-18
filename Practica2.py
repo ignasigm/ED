@@ -229,5 +229,8 @@ def testDiscard_Pile():
 	
 	
 
+testStack()
+testQueue()
+testPriorityQueue()
 testDeck()   
 testDiscard_Pile()
