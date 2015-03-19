@@ -248,6 +248,7 @@ def testDiscard_Pile():
 	
 
 
+
 class One:
 	moment
 	_jugadors = []
