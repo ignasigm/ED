@@ -87,10 +87,10 @@ class PriorityQueue(Queue):
 		else:               
 			inserted,i=False,0              
 		  	while i< (len(self)-1) and not(inserted):                
-		    	if self.__getitem__(i)<el and el<=self.__getitem__(i+1): 
-			    	self.insert(i+1,el)
-			    	inserted=True  
-		    	i=i+1              
+        		    	if self.__getitem__(i)<el and el<=self.__getitem__(i+1): 
+        			    	self.insert(i+1,el)
+        			    	inserted=True  
+        		    	i=i+1              
 			if not(inserted):  self.insert(len(self),el)
 		  	
 def testPriorityQueue():
@@ -250,59 +250,54 @@ def testDiscard_Pile():
 
 
 
-class One:
-	moment
-	_jugadors = []
-	_baralla = []
-	_pila = []
-	def __init__(self):
+class One:      
+      __jugadors = []
+      __baralla = []
+      __pila = []
+      __moment = 0
+      def __init__(self):
 		self.prepare_game()
 		self.run_game()
 		
-	def prepare_game(self):
+      def prepare_game(self):
 		_baralla = Deck()
-		num_players = input("Introdueix el nombre de jugadors")
+		num_player = input("Introdueix el nombre de jugadors_\n")
 		for i in range(num_player):
-			nom = raw_input("Introdueix nom del jugador"+(i+1)) 
-			_jugadors.append(Player(nom,_baralla,7))
-		_pila = Discard_Pile(_baralla)
-		moment = random.randint(0, num_players)
-	def stop_criterion(self):
+			nom = raw_input("\nIntrodueix nom del jugador"+str(i+1)+"\n") 
+			self.__jugadors.append(Player(nom,_baralla,7))
+		self.__pila = Discard_Pile(_baralla)
+		self.__moment = random.randint(0, num_player)
+      def stop_criterion(self):
 		i=0
-		while i<len(_jugadors) and _jugadors[i]!=0:
+		while i<len(self.__jugadors) and self.__jugadors[i]!=0:
 			i=i+1
-		if i<len(_jugadors):
+		if i<len(self.__jugadors):
 			return True
 		else:
 			return False
 		
-	def announce_champion(self):
-		i=0
-		while _jugadors[i]!=0:
-			i++
-		print _jugadors[i]
+      def announce_champion(self):
+	 	i=0
+		while self.__jugadors[i]!=0:
+			i+=1
+		print self.__jugadors[i]
 		
-	def visualize_state(self,pila,jugadors):
-		return "Pila:"+pila.peek()+"Cartes jugador actual:"+jugadors[moment]
-	def getJugador(self):
-		return _jugador[moment]
+      def visualize_state(self,pila,jugadors):
+		return "Pila:"+pila.peek()+"Cartes jugador actual:"+self.__jugadors[self.moment]
+      def getJugador(self):
+		return self.__jugadors[self.moment]
 		
-	def run_game(self)
-		while not self.stop_criterion():
-			print visualize_state(_pila, _jugadors)
-			while not self.getJugador().can_play_card():
-				self.getJugador().enqueue(_baralla.dequeue())
-			carta_sel = self.getJugador().select_card(input("Introdueix el número de la carta"))
-			if carta_sel.check_card(pila.peek()):
-				self.getJugador.pop(carta_sel)
-				self._pila.enqueue(carta_sel)
-			else:
-				print "Incorrecte"
-		self.announce_champion()
+      def run_game(self):
+            while not self.stop_criterion():
+                print self.visualize_state(self.__pila, self.__jugadors)
+            while not self.getJugador().can_play_card():
+                self.getJugador().enqueue(self.__baralla.dequeue())
+            carta_sel = self.getJugador().select_card(input("Introdueix el numero de la carta que vols tirar"))
+            if carta_sel.check_card(self.__pila.peek()):
+                self.getJugador.pop(carta_sel)
+                self.__pila.enqueue(carta_sel)
+            else:
+                print "Incorrecte"
 	
-
-testStack()
-testQueue()
-testPriorityQueue()
-testDeck()   
-testDiscard_Pile()
+one = One()
+one.run_game()
