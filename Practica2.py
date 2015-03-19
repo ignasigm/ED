@@ -200,15 +200,6 @@ class Deck(Queue):
         random.shuffle(cards)
         for i in cards:
             self.enqueue(i)
-    def deal_one_card(self):
-        #funcio que reparteix una carta (i l'elimina de la deck)
-        return self.dequeue()
-    def deal(self, num_cards):
-        #funcio que reparteix num_cards nombre de cartes
-        dealcards = []
-        for i in range(num_cards):
-            dealcards.append(self.deal_one_card())
-        return dealcards
         
 def testDeck():
     print "\n\nTestDeck"
