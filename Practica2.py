@@ -266,7 +266,11 @@ class One:
 		
 	def stop_criterion(self):
 		while i<len(_jugadors) and _jugadors[i]!=0:
-			
+			i=i+1
+		if i<len(_jugadors):
+			return True
+		else:
+			return False
 		
 	
 
