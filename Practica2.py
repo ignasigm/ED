@@ -261,7 +261,7 @@ class One:
 	def prepare_game(self):
 		self.__baralla = Deck()
 		self.__num_player = input("Introdueix el nombre de jugadors_\n")
-		for i in range(self.__numplayer):
+		for i in range(self.__num_player):
 			nom = raw_input("\nIntrodueix nom del jugador"+str(i+1)+"\n") 
 			self.__jugadors.append(Player(nom,self.__baralla,CONSTANT_CARTES))
 		self.__pila = Discard_Pile(self.__baralla)
