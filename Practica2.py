@@ -249,6 +249,7 @@ def testDiscard_Pile():
 
 
 class One:
+	moment
 	_jugadors = []
 	_baralla = []
 	_pila = []
@@ -258,12 +259,12 @@ class One:
 		
 	def prepare_game(self):
 		_baralla = Deck()
-		nom = raw_input("Entra el nom del jugador, [Enter quan no vulguis mes]") 
-		while nom!="":
+		num_players = input("Introdueix el nombre de jugadors")
+		for i in range(num_player):
+			nom = raw_input("Introdueix nom del jugador"+(i+1)) 
 			_jugadors.append(Player(nom,_baralla,7))
-			nom = raw_input("Entra el nom del jugador") 
 		_pila = Discard_Pile(_baralla)
-		
+		moment = random.randint(0, num_players)
 	def stop_criterion(self):
 		i=0
 		while i<len(_jugadors) and _jugadors[i]!=0:
@@ -279,13 +280,24 @@ class One:
 			i++
 		print _jugadors[i]
 		
-	def visualize_state(self,_pila,_jugadors):
-		return "Pila:"+_pila.peek()+"Cartes jugador actual:"+
-		
+	def visualize_state(self,pila,jugadors):
+		return "Pila:"+pila.peek()+"Cartes jugador actual:"+jugadors[moment]
+	def getJugador(self):
+		return _jugador[moment]
 		
 	def run_game(self)
 		while not self.stop_criterion():
-			print self
+			print visualize_state(_pila, _jugadors)
+			while not self.getJugador().can_play_card():
+				self.getJugador().enqueue(_baralla.dequeue())
+			carta_sel = self.getJugador().select_card(input("Introdueix el número de la carta"))
+			if carta_sel.check_card(pila.peek()):
+				self.getJugador.pop(carta_sel)
+				self._pila.enqueue(carta_sel)
+			else:
+				print "Incorrecte"
+		self.announce_champion()
+	
 
 testStack()
 testQueue()
