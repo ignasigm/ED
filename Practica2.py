@@ -293,6 +293,7 @@ class One:
         def run_game(self):
         	while not self.stop_criterion():
         		print self.visualize_state(self.__pila, self.__jugadors)
+<<<<<<< HEAD
         	while not self.getJugador().can_play_card():
         		self.getJugador().enqueue(self.__baralla.dequeue())
         	while self.getJugador().can_play_card():
@@ -303,6 +304,18 @@ class One:
                 	else:
                 		print "Incorrecte"
                 		self.change_turn()
+=======
+	        	while not self.getJugador().can_play_card():
+	        		self.getJugador().enqueue(self.__baralla.dequeue())
+	        	while self.getJugador().can_play_card():
+	        		carta_sel = self.getJugador().select_card(input("Introdueix el numero de la carta que vols tirar:\n"))
+	        		if carta_sel.check_card(self.__pila.peek()):
+	        			self.getJugador.pop(carta_sel)
+	        			self.__pila.enqueue(carta_sel)
+	            		else:
+	                		print "Incorrecte"
+	                		self.change_turn()
+>>>>>>> origin/master
 	
 one = One()
 one.run_game()
