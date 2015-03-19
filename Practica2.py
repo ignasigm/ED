@@ -120,10 +120,7 @@ class Player(PriorityQueue):
     def getName(self):
 	#retorna el nom del jugador
 	return self.__name
-    def __str__(self):
-	#funcio que imprimeix la informacio del player(nom i cartes)
-	resultat = "Nom: "+self.getName()+"\nCartes: "+str(self)
-	return resultat
+    
 	
     	
     def select_card(self,number):
@@ -262,6 +259,7 @@ class One:
 		self.__baralla = Deck()
 		self.__num_player = input("Introdueix el nombre de jugadors_\n")
 		for i in range(self.__num_player):
+			print "hey"
 			nom = raw_input("\nIntrodueix nom del jugador"+str(i+1)+"\n") 
 			self.__jugadors.append(Player(nom,self.__baralla,CONSTANT_CARTES))
 		self.__pila = Discard_Pile(self.__baralla)
@@ -302,7 +300,7 @@ class One:
         		if carta_sel.check_card(self.__pila.peek()):
         			self.getJugador.pop(carta_sel)
         			self.__pila.enqueue(carta_sel)
-            		else:
+                	else:
                 		print "Incorrecte"
                 		self.change_turn()
 	
