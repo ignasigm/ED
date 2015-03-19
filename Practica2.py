@@ -1,5 +1,6 @@
 import random
 #class Stack
+global N = 7
 class Stack:
 	def __init__(self):
 		self.__items = []
@@ -252,6 +253,7 @@ class One:
 	_jugadors = []
 	_baralla = []
 	_pila = []
+	_jugador
 	def __init__(self):
 		self.prepare_game()
 		self.run_game()
@@ -260,9 +262,10 @@ class One:
 		_baralla = Deck()
 		nom = raw_input("Entra el nom del jugador, [Enter quan no vulguis mes]") 
 		while nom!="":
-			_jugadors.append(Player(nom,_baralla,7))
+			_jugadors.append(Player(nom,_baralla,N))
 			nom = raw_input("Entra el nom del jugador") 
 		_pila = Discard_Pile(_baralla)
+		
 		
 	
 
