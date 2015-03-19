@@ -280,7 +280,7 @@ class One:
 		print self.__jugadors[i]
 		
         def visualize_state(self,pila,jugadors):
-		return "Pila:"+str(pila.peek())+"\nCartes jugador actual:"+str(self.__jugadors[self.__moment])
+		return "Pila:"+str(self.__pila.peek())+"\nCartes jugador actual:"+str(self.__jugadors[self.__moment])
 		
         def getJugador(self):
 		return self.__jugadors[self.__moment]
@@ -294,9 +294,9 @@ class One:
         	while not self.stop_criterion():
         		print self.visualize_state(self.__pila, self.__jugadors)
 
-	        	while not self.getJugador().can_play_card():
+	        	while not self.getJugador().can_play_card(self.__pila.peek():
 	        		self.getJugador().enqueue(self.__baralla.dequeue())
-	        	while self.getJugador().can_play_card():
+	        	while self.getJugador().can_play_card(self.__pila.peek():
 	        		carta_sel = self.getJugador().select_card(input("Introdueix el numero de la carta que vols tirar:\n"))
 	        		if carta_sel.check_card(self.__pila.peek()):
 	        			self.getJugador.pop(carta_sel)
