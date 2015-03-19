@@ -1,5 +1,6 @@
 import random
 #class Stack
+CONSTANT_CARTES = 7
 class Stack:
 	def __init__(self):
 		self.__items = []
@@ -255,18 +256,19 @@ class One:
       __baralla = []
       __pila = []
       __moment = 0
+      __numplayer = 0
       def __init__(self):
 		self.prepare_game()
 		self.run_game()
 		
       def prepare_game(self):
-		_baralla = Deck()
-		num_player = input("Introdueix el nombre de jugadors_\n")
-		for i in range(num_player):
+		self.__baralla = Deck()
+		self.__num_player = input("Introdueix el nombre de jugadors_\n")
+		for i in range(self.__num_player):
 			nom = raw_input("\nIntrodueix nom del jugador"+str(i+1)+"\n") 
-			self.__jugadors.append(Player(nom,_baralla,7))
-		self.__pila = Discard_Pile(_baralla)
-		self.__moment = random.randint(0, num_player)
+			self.__jugadors.append(Player(nom,self.__baralla,CONSTANT_CARTES))
+		self.__pila = Discard_Pile(self.__baralla)
+		self.__moment = random.randint(0, self.__num_player)
       def stop_criterion(self):
 		i=0
 		while i<len(self.__jugadors) and self.__jugadors[i]!=0:
@@ -283,21 +285,26 @@ class One:
 		print self.__jugadors[i]
 		
       def visualize_state(self,pila,jugadors):
-		return "Pila:"+pila.peek()+"Cartes jugador actual:"+self.__jugadors[self.moment]
+		return "Pila:"+pila.peek()+"\nCartes jugador actual:"+self.__jugadors[self.moment]+"\n"
       def getJugador(self):
 		return self.__jugadors[self.moment]
-		
+      def change_turn(self):
+          if self.__moment<self.__numplayer:
+              self.__moment+=1
       def run_game(self):
             while not self.stop_criterion():
                 print self.visualize_state(self.__pila, self.__jugadors)
             while not self.getJugador().can_play_card():
                 self.getJugador().enqueue(self.__baralla.dequeue())
-            carta_sel = self.getJugador().select_card(input("Introdueix el numero de la carta que vols tirar"))
-            if carta_sel.check_card(self.__pila.peek()):
-                self.getJugador.pop(carta_sel)
-                self.__pila.enqueue(carta_sel)
-            else:
-                print "Incorrecte"
+            while self.getJugador().can_play_card():
+                
+                carta_sel = self.getJugador().select_card(input("Introdueix el numero de la carta que vols tirar:\n"))
+                if carta_sel.check_card(self.__pila.peek()):
+                    self.getJugador.pop(carta_sel)
+                    self.__pila.enqueue(carta_sel)
+                else:
+                    print "Incorrecte"
+                    self.change_turn()
 	
 one = One()
 one.run_game()
