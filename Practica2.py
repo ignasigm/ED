@@ -60,8 +60,7 @@ class Queue:
 		return self.__data.pop(num)
 	def getIndex(self, el):
 		return self.__data.index(el)
-      
-		
+
 def testQueue():
 	print "\ntestQueue"
 	llista_q = Queue()
@@ -123,7 +122,7 @@ class Player(PriorityQueue):
 	return self.__name
     def __str__(self):
 	#funcio que imprimeix la informacio del player(nom i cartes)
-	resultat = "Nom: "+self.getName()+"\nCartes: "+self	
+	resultat = "Nom: "+self.getName()+"\nCartes: "+str(self)
 	return resultat
 	
     	
@@ -153,7 +152,6 @@ class Player(PriorityQueue):
 	#funcio que retorna la carta i elimina de la llista de cartes del jugador
 	#afegeix a discard_pile
 	discard_pile.append(self.pop(self.getIndex(card)))
-	
 
 	
 '''CARD'''
@@ -264,7 +262,7 @@ class One:
       def prepare_game(self):
 		self.__baralla = Deck()
 		self.__num_player = input("Introdueix el nombre de jugadors_\n")
-		for i in range(self.__num_player):
+		for i in range(self.__numplayer):
 			nom = raw_input("\nIntrodueix nom del jugador"+str(i+1)+"\n") 
 			self.__jugadors.append(Player(nom,self.__baralla,CONSTANT_CARTES))
 		self.__pila = Discard_Pile(self.__baralla)
@@ -285,12 +283,14 @@ class One:
 		print self.__jugadors[i]
 		
       def visualize_state(self,pila,jugadors):
-		return "Pila:"+pila.peek()+"\nCartes jugador actual:"+self.__jugadors[self.moment]+"\n"
+		return "Pila:"+str(pila.peek())+"\nCartes jugador actual:"+str(self.__jugadors[self.__moment])
       def getJugador(self):
-		return self.__jugadors[self.moment]
+		return self.__jugadors[self.__moment]
       def change_turn(self):
           if self.__moment<self.__numplayer:
               self.__moment+=1
+          else:
+              self.__moment-=self.__numplayer
       def run_game(self):
             while not self.stop_criterion():
                 print self.visualize_state(self.__pila, self.__jugadors)
