@@ -250,12 +250,12 @@ def testDiscard_Pile():
 
 
 class One:      
-    __jugadors = []
-    __baralla = []
-    __pila = []
-    __moment = 0
-    __numplayer = 0
-    def __init__(self):
+        __jugadors = []
+        __baralla = []
+        __pila = []
+        __moment = 0
+        __numplayer = 0
+        def __init__(self):
 		self.prepare_game()
 		self.run_game()
 	def prepare_game(self):
@@ -266,7 +266,7 @@ class One:
 			self.__jugadors.append(Player(nom,self.__baralla,CONSTANT_CARTES))
 		self.__pila = Discard_Pile(self.__baralla)
 		self.__moment = random.randint(0, self.__num_player)
-    def stop_criterion(self):
+        def stop_criterion(self):
 		i=0
 		while i<len(self.__jugadors) and self.__jugadors[i]!=0:
 			i=i+1
@@ -275,36 +275,36 @@ class One:
 		else:
 			return False
 		
-    def announce_champion(self):
-	 	i=0
+        def announce_champion(self):
+		i=0
 		while self.__jugadors[i]!=0:
 			i+=1
 		print self.__jugadors[i]
 		
-    def visualize_state(self,pila,jugadors):
+        def visualize_state(self,pila,jugadors):
 		return "Pila:"+str(pila.peek())+"\nCartes jugador actual:"+str(self.__jugadors[self.__moment])
 		
-    def getJugador(self):
+        def getJugador(self):
 		return self.__jugadors[self.__moment]
 		
-    def change_turn(self):
-        if self.__moment<self.__numplayer:
-            self.__moment+=1
-        else:
-            self.__moment-=self.__numplayer
-    def run_game(self):
-        while not self.stop_criterion():
-            print self.visualize_state(self.__pila, self.__jugadors)
-        while not self.getJugador().can_play_card():
-            self.getJugador().enqueue(self.__baralla.dequeue())
-        while self.getJugador().can_play_card():
-            carta_sel = self.getJugador().select_card(input("Introdueix el numero de la carta que vols tirar:\n"))
-            if carta_sel.check_card(self.__pila.peek()):
-                self.getJugador.pop(carta_sel)
-                self.__pila.enqueue(carta_sel)
-            else:
-                print "Incorrecte"
-                self.change_turn()
+        def change_turn(self):
+        	if self.__moment<self.__numplayer:
+        		self.__moment+=1
+        	else:
+        		self.__moment-=self.__numplayer
+        def run_game(self):
+        	while not self.stop_criterion():
+        		print self.visualize_state(self.__pila, self.__jugadors)
+        	while not self.getJugador().can_play_card():
+        		self.getJugador().enqueue(self.__baralla.dequeue())
+        	while self.getJugador().can_play_card():
+        		carta_sel = self.getJugador().select_card(input("Introdueix el numero de la carta que vols tirar:\n"))
+        		if carta_sel.check_card(self.__pila.peek()):
+        			self.getJugador.pop(carta_sel)
+        			self.__pila.enqueue(carta_sel)
+            		else:
+                		print "Incorrecte"
+                		self.change_turn()
 	
 one = One()
 one.run_game()
