@@ -265,6 +265,7 @@ class One:
 		_pila = Discard_Pile(_baralla)
 		
 	def stop_criterion(self):
+		i=0
 		while i<len(_jugadors) and _jugadors[i]!=0:
 			i=i+1
 		if i<len(_jugadors):
@@ -272,7 +273,19 @@ class One:
 		else:
 			return False
 		
-	
+	def announce_champion(self):
+		i=0
+		while _jugadors[i]!=0:
+			i++
+		print _jugadors[i]
+		
+	def visualize_state(self,_pila,_jugadors):
+		return "Pila:"+_pila.peek()+"Cartes jugador actual:"+
+		
+		
+	def run_game(self)
+		while not self.stop_criterion():
+			print self
 
 testStack()
 testQueue()
