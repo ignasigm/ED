@@ -87,11 +87,11 @@ class PriorityQueue(Queue):
 		else:               
 			inserted,i=False,0              
 		  	while i< (len(self)-1) and not(inserted):                
-		    		if self.__getitem__(i)<el and el<=self.__getitem__(i+1): 
-			    		self.insert(i+1,el)
-			    		inserted=True  
-		    		i=i+1              
-		  	if not(inserted):  self.insert(len(self),el)
+		    	if self.__getitem__(i)<el and el<=self.__getitem__(i+1): 
+			    	self.insert(i+1,el)
+			    	inserted=True  
+		    	i=i+1              
+			if not(inserted):  self.insert(len(self),el)
 		  	
 def testPriorityQueue():
 	print "\ntestPQueue"
@@ -109,7 +109,7 @@ def testPriorityQueue():
 	print "Tota la llista: ",llista_qr
 
 '''PLAYER'''
-class player(PriorityQueue):
+class Player(PriorityQueue):
     def __init__(self, nom, deck, maxcartes):
     	PriorityQueue.__init__(self)
         self.__name = nom
@@ -246,6 +246,20 @@ def testDiscard_Pile():
     print "Carta borrada:",llista.pop()
     print "Veure de nou la llista:",llista	
 	
+
+
+class One:
+	_jugadors = []
+	_baralla = []
+	_pila = Discard_Pile()
+	def __init__(self):
+		self.prepare_game()
+		self.run_game()
+		
+	def prepare_game(self):
+		
+		baralla = Deck()
+		
 	
 
 testStack()
