@@ -115,7 +115,7 @@ class Player(PriorityQueue):
         self.__name = nom
         i = 0
         while i < maxcartes:
-            self.enqueue(deck.dequeue)
+            self.enqueue(deck.dequeue())
             i+=1
     def getName(self):
 	#retorna el nom del jugador
@@ -140,8 +140,8 @@ class Player(PriorityQueue):
 	#funcio que retorna true si els jugador te una carta que pot jugar i false si no te cap carta bona segons les normes
 	i=0
 	possible = False
-	while i<self.len() and not possible:
-	    possible = self.getitem(i).check_card(card)		    
+	while i<len(self) and not possible:
+	    possible = super.super.getitem(i).check_card(card)		    
 	    i+=1
 	#si surt del while abans es que ho ha trobat i per tant True
 	return possible
@@ -257,13 +257,12 @@ class One:
 		self.run_game()
 	def prepare_game(self):
 		self.__baralla = Deck()
-		self.__num_player = input("Introdueix el nombre de jugadors_\n")
-		for i in range(self.__num_player):
-			print "hey"
+		self.__numplayer = input("Introdueix el nombre de jugadors_\n")
+		for i in range(self.__numplayer):
 			nom = raw_input("\nIntrodueix nom del jugador"+str(i+1)+"\n") 
 			self.__jugadors.append(Player(nom,self.__baralla,CONSTANT_CARTES))
 		self.__pila = Discard_Pile(self.__baralla)
-		self.__moment = random.randint(0, self.__num_player)
+		self.__moment = random.randint(0, self.__numplayer)
         def stop_criterion(self):
 		i=0
 		while i<len(self.__jugadors) and self.__jugadors[i]!=0:
@@ -283,7 +282,7 @@ class One:
 		return "Pila:"+str(self.__pila.peek())+"\nCartes jugador actual:"+str(self.__jugadors[self.__moment])
 		
         def getJugador(self):
-		return self.__jugadors[self.__moment]
+		return  self.__jugadors[self.__moment]
 		
         def change_turn(self):
         	if self.__moment<self.__numplayer:
@@ -292,11 +291,11 @@ class One:
         		self.__moment-=self.__numplayer
         def run_game(self):
         	while not self.stop_criterion():
-        		print self.visualize_state(self.__pila, self.__jugadors)
+        		#print self.visualize_state(self.__pila, self.__jugadors)
 
-	        	while not self.getJugador().can_play_card(self.__pila.peek():
+	        	while not self.getJugador().can_play_card(self.__pila.peek()):
 	        		self.getJugador().enqueue(self.__baralla.dequeue())
-	        	while self.getJugador().can_play_card(self.__pila.peek():
+	        	while self.getJugador().can_play_card(self.__pila.peek()):
 	        		carta_sel = self.getJugador().select_card(input("Introdueix el numero de la carta que vols tirar:\n"))
 	        		if carta_sel.check_card(self.__pila.peek()):
 	        			self.getJugador.pop(carta_sel)
