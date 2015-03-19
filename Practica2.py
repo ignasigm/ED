@@ -125,19 +125,20 @@ class Player(PriorityQueue):
 	resultat = "Nom: "+self.getName()+"\nCartes: "+self	
 	return resultat
 	
-    '''Per implementar'''	
+    	
     def select_card(self,number):
 	#funcio que selecciona la carta amb un numero corresponent introduit
 	i=0
 	possible = False
 	#mentre l'index sigui menor que la longitud i True
 	while i<self.len() and not possible:
-	    possible = number == self.getCards()[i].getNumber()		    
+	    possible = number == self.getitem(i).getNumber()		    
 	    i+=1
 	#si possible es True aleshores es que es pot i retorna la carta de la posicio que ho ha trobat
 	if possible:
-	    return self.getCards()[i]
-    '''fins aqui'''
+	    return self.getitem(i)
+	else:
+		return None
     def can_play_card(self,card):
 	#funcio que retorna true si els jugador te una carta que pot jugar i false si no te cap carta bona segons les normes
 	i=0
@@ -199,7 +200,15 @@ class Deck(Queue):
         random.shuffle(cards)
         for i in cards:
             self.enqueue(i)
-    
+    def deal_one_card(self):
+        #funcio que reparteix una carta (i l'elimina de la deck)
+        return self.dequeue()
+    def deal(self, num_cards):
+        #funcio que reparteix num_cards nombre de cartes
+        dealcards = []
+        for i in range(num_cards):
+            dealcards.append(self.deal_one_card())
+        return dealcards
         
 def testDeck():
     print "\n\nTestDeck"
@@ -251,14 +260,18 @@ def testDiscard_Pile():
 class One:
 	_jugadors = []
 	_baralla = []
-	_pila = Discard_Pile()
+	_pila = []
 	def __init__(self):
 		self.prepare_game()
 		self.run_game()
 		
 	def prepare_game(self):
-		
-		baralla = Deck()
+		_baralla = Deck()
+		nom = raw_input("Entra el nom del jugador, [Enter quan no vulguis mes]") 
+		while nom!="":
+			_jugadors.append(Player(nom,_baralla,7))
+			nom = raw_input("Entra el nom del jugador") 
+		_pila = Discard_Pile(_baralla)
 		
 	
 
