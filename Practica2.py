@@ -80,7 +80,8 @@ def testQueue():
 class PriorityQueue(Queue):
 	def __init__(self):        
 		Queue.__init__(self)          
-	
+	def __getitem__(self, num):
+		return super[num]
 	def enqueue(self,el):        
 		if self.isEmpty(): self.insert(0,el)        
 		elif el<=self.__getitem__(0): self.insert(0,el)        
